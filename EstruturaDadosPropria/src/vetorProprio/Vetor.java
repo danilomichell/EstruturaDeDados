@@ -1,7 +1,6 @@
 package vetorProprio;
 
 import utils.Iterador;
-import java.util.*;
 
 public class Vetor<T> {
 
