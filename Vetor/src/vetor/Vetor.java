@@ -1,4 +1,4 @@
-package vetorProprio;
+package vetor;
 
 import utils.Iterador;
 

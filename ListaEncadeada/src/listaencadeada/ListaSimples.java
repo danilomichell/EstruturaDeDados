@@ -1,5 +1,8 @@
-package principal;
+package listaencadeada;
+
+import listaencadeada.Celula;
 import utils.Iterador;
+
 public class ListaSimples<T> {
 
     private Celula inicio, fim;
@@ -23,20 +26,31 @@ public class ListaSimples<T> {
         }
     }
 
-    public T Recupera(int posicao) {
-        
+    public void adicionaFim(T elemento) {
+        Celula nova = new Celula(elemento);
         if (this.tamanho == 0) {
-            
+            inicio = fim = nova;
+            this.tamanho += 1;
+        } else {
+            fim.setProximo(nova);
+            this.tamanho += 1;
+        }
+    }
+
+    public T Recupera(int posicao) {
+
+        if (this.tamanho == 0) {
+
             System.out.println("A lista está vazia!!");
             return null;
-            
+
         } else if (posicao < 0 || posicao >= this.tamanho) {
-            
+
             System.out.println("A Posição " + posicao + " é Inválida!");
             return null;
-            
+
         } else {
-            
+
             Iterador it = new Iterador(this.inicio);
             int i = 0;
             while (it.hasNext()) {
@@ -47,23 +61,23 @@ public class ListaSimples<T> {
                     break;
                 }
             }
-            
+
             return (T) it.getAtual().getElemento();
         }
     }
 
     public void removeInicio() {
-        
+
         if (this.tamanho == 0) {
             System.out.println("A lista está vazia!");
-            
+
         } else if (inicio == fim) {
-            
+
             inicio = fim = null;
             this.tamanho -= 1;
-            
+
         } else {
-            
+
             inicio = inicio.getProximo();
             this.tamanho -= 1;
         }

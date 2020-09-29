@@ -1,30 +1,33 @@
 package utils;
 
 import java.util.Iterator;
+import listaencadeada.Celula;
 
 public class Iterador<T> implements Iterator {
 
-    T[] itens;
-    int posicao = 0;
+    private Celula atual;
 
-    //Construtor Iterador
-    public Iterador(T[] itens) {
-        this.itens = itens;
+    public Iterador(Celula atual) {
+        this.atual = atual;
     }
 
-    //Verifica se ainda existe dado 
+    @Override
     public boolean hasNext() {
-        if (posicao < 0 || posicao >= itens.length) {
-            return false;
-        } else {
+        if (atual != null) {
             return true;
+        } else {
+            return false;
         }
     }
 
-    //Retorna o próximo valor 
+    @Override
     public Object next() {
-        Object item = itens[posicao];
-        posicao++;
-        return item;
+        T elemento = (T) atual.getElemento();
+        atual = atual.getProximo();
+        return elemento;
+    }
+
+    public Celula getAtual() {
+        return atual;
     }
 }
