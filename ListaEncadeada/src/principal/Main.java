@@ -6,28 +6,29 @@ import listaencadeada.ListaSimples;
 public class Main {
 
     public static void main(String[] args) {
-
+        Aluno ver = null;
         Aluno a1 = new Aluno("Anderson", 42);
         Aluno a2 = new Aluno("Ana", 31);
         Aluno a3 = new Aluno("José", 23);
         Aluno a4 = new Aluno("Jonas", 11);
+        Aluno a5 = new Aluno("Rebeca", 19);
 
         ListaSimples lista = new ListaSimples();
 
-        lista.adicionaInicio(a1);  //funcionando
-        lista.adicionaInicio(a2);  //funcionando
-        lista.adicionaInicio(a3);  //funcionando        
-
-        lista.removeInicio();  //funcionando
-
-        lista.adicionaFim(a4);
-        a1 = (Aluno) lista.Recupera(0);
-        a2 = (Aluno) lista.Recupera(1);
-        a4 = (Aluno) lista.Recupera(2);
-
-        System.out.println(a1.getNome() + " - " + a1.getIdade());  //funcionando
-        System.out.println(a2.getNome() + " - " + a2.getIdade());  //funcionando
-        System.out.println(a4.getNome() + " - " + a4.getIdade());  //funcionando
-
+        lista.adicionaFim(a1);  //funcionando
+        lista.adicionaFim(a2);  //funcionando
+        lista.adicionaFim(a3);  //funcionando   
+        lista.adicionaInicio(a4);  //funcionando
+        lista.adiciona(a5, 1);  //funcionando        
+ 
+        //lista.removeInicio();  //funcionando 
+        //lista.removeFim();  //funcionando 
+        lista.remove(4);    //funcionando
+        //lista.limpa();  //funcionando
+        
+        for (int i = 0; i < lista.tamanho(); i++) {
+            ver = (Aluno) lista.Recupera(i);
+            System.out.println(ver.getNome() + " - " + ver.getIdade());
+        }
     }
 }
