@@ -1,6 +1,7 @@
-package vetorProprio;
+package principal;
 
 import utils.Aluno;
+import vetorProprio.Vetor;
 
 public class Main {
 
