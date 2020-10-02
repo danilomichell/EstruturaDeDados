@@ -1,14 +1,13 @@
 package listaencadeada;
 
-import jdk.nashorn.api.tree.BreakTree;
 import utils.Iterador;
 
-public class ListaSimples<T> {
+public class ListaEncadeada<T> {
 
     private Celula inicio, fim;
     private int tamanho;
 
-    public ListaSimples() {
+    public ListaEncadeada() {
         this.inicio = null;
         this.fim = null;
         this.tamanho = 0;
@@ -21,6 +20,7 @@ public class ListaSimples<T> {
             this.tamanho += 1;
         } else {
             nova.setProximo(inicio);
+            nova.getProximo().setAnterior(nova);
             inicio = nova;
             this.tamanho += 1;
         }
@@ -33,22 +33,29 @@ public class ListaSimples<T> {
             throw new ArrayIndexOutOfBoundsException("Posição Inválida");
         } else {
             Celula nova = new Celula(elemento);
-            Iterador it = new Iterador(this.inicio);
-            int i = 0;
-            while (it.hasNext()) {
-                if (tamanho() == 1) {
-                    adicionaFim(elemento);
-                    this.tamanho += 1;
-                    break;
-                }
-                if (i < posicao - 1) {
-                    it.next();
-                    i++;
-                } else {
-                    nova.setProximo(it.getAtual().getProximo());
-                    it.getAtual().setProximo(nova);
-                    this.tamanho += 1;
-                    break;
+            if (posicao == 0) {
+                adicionaInicio(elemento);
+            } else if (posicao == tamanho()) {
+                adicionaFim(elemento);
+            } else {
+                Iterador it = new Iterador(this.inicio);
+                int i = 0;
+                while (it.hasNext()) {
+                    if (tamanho() == 1) {
+                        adicionaFim(elemento);
+                        break;
+                    }
+                    if (i < posicao - 1) {
+                        it.next();
+                        i++;
+                    } else {
+                        nova.setProximo(it.getAtual().getProximo());
+                        it.getAtual().setProximo(nova);
+                        nova.setAnterior(it.getAtual());
+                        nova.getProximo().setAnterior(nova);
+                        this.tamanho += 1;
+                        break;
+                    }
                 }
             }
         }
@@ -61,6 +68,7 @@ public class ListaSimples<T> {
             this.tamanho += 1;
         } else {
             fim.setProximo(nova);
+            nova.setAnterior(fim);
             fim = fim.getProximo();
             this.tamanho += 1;
         }
@@ -108,13 +116,10 @@ public class ListaSimples<T> {
             throw new ArrayIndexOutOfBoundsException("A lista está vazia!");
 
         } else if (inicio == fim) {
-
-            inicio = fim = null;
-            this.tamanho -= 1;
-
+            limpa();
         } else {
-
             inicio = inicio.getProximo();
+            inicio.setAnterior(null);
             this.tamanho -= 1;
         }
     }
@@ -125,20 +130,28 @@ public class ListaSimples<T> {
         } else if (posicao < 0 || posicao > tamanho()) {
             throw new ArrayIndexOutOfBoundsException("Posição Inválida");
         } else {
-            Iterador it = new Iterador(this.inicio);
-            int i = 0;
-            while (it.hasNext()) {
-                if (tamanho() == 1) {
-                    limpa();
-                    break;
-                }
-                if (i < posicao - 1) {
-                    it.next();
-                    i++;
-                } else {
-                    it.getAtual().setProximo((it.getAtual().getProximo()).getProximo());
-                    this.tamanho -= 1;
-                    break;
+            if (tamanho() == 1) {
+                limpa();
+            } else if (posicao == 0) {
+                removeInicio();
+            } else if (posicao == tamanho() - 1) {
+                removeFim();
+            } else {
+                Iterador it = new Iterador(this.inicio);
+                int i = 0;
+                while (it.hasNext()) {
+                    if (i < posicao - 1) {
+                        it.next();
+                        i++;
+                    } else {
+                        Celula removido = it.getAtual().getProximo();
+                        it.getAtual().setProximo(removido.getProximo());
+                        it.getAtual().getProximo().setAnterior(it.getAtual());
+                        removido.setProximo(null);
+                        removido.setAnterior(null);
+                        this.tamanho -= 1;
+                        break;
+                    }
                 }
             }
         }
@@ -148,16 +161,13 @@ public class ListaSimples<T> {
         if (!existeDado()) {
             throw new ArrayIndexOutOfBoundsException("A lista está vazia!");
 
-        } else if (inicio == fim) {
-
-            inicio = fim = null;
-            this.tamanho -= 1;
-
+        } else if (tamanho() == 0) {
+            limpa();
         } else {
             Iterador it = new Iterador(this.inicio);
-            int i = 0;
+            int i = 1;
             while (it.hasNext()) {
-                if (i < tamanho - 1) {
+                if (i < tamanho() - 1) {
                     it.next();
                     i++;
                 } else {

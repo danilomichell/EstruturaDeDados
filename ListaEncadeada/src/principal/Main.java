@@ -21,9 +21,9 @@ public class Main {
         lista.adicionaInicio(a4);  //funcionando
         lista.adiciona(a5, 4);  //funcionando        
 
-        lista.removeInicio();  //funcionando 
-        lista.removeFim();  //funcionando 
-        lista.remove(0);    //funcionando
+        //lista.removeInicio();  //funcionando 
+        //lista.removeFim();  //funcionando 
+        lista.remove(3);    //funcionando
 
         lista.limpa();  //funcionando
         

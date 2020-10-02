@@ -34,7 +34,7 @@ public class ListaEncadeada<T> {
             Celula nova = new Celula(elemento);
             if (posicao == 0) {
                 adicionaInicio(elemento);
-            } else if ((posicao == tamanho() - 1) || (posicao == tamanho())) {
+            } else if (posicao == tamanho()) {
                 adicionaFim(elemento);
             } else {
                 Iterador it = new Iterador(this.inicio);
@@ -42,7 +42,6 @@ public class ListaEncadeada<T> {
                 while (it.hasNext()) {
                     if (tamanho() == 1) {
                         adicionaFim(elemento);
-                        this.tamanho += 1;
                         break;
                     }
                     if (i < posicao - 1) {
@@ -143,10 +142,13 @@ public class ListaEncadeada<T> {
                     if (i < posicao - 1) {
                         it.next();
                         i++;
+                    } else {
+                        Celula removido = it.getAtual().getProximo();
+                        it.getAtual().setProximo(removido.getProximo());
+                        removido.setProximo(null);
+                        this.tamanho -= 1;
+                        break;
                     }
-                    it.getAtual().setProximo((it.getAtual().getProximo()).getProximo());
-                    this.tamanho -= 1;
-                    break;
                 }
             }
         }

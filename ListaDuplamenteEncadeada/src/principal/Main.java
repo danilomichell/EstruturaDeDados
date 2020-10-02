@@ -1,7 +1,7 @@
 package principal;
 
 import utils.Aluno;
-import listaencadeada.ListaSimples;
+import listaencadeada.ListaEncadeada;
 
 public class Main {
 
@@ -13,18 +13,19 @@ public class Main {
         Aluno a4 = new Aluno("Jonas", 11);
         Aluno a5 = new Aluno("Rebeca", 19);
 
-        ListaSimples lista = new ListaSimples();
+        ListaEncadeada lista = new ListaEncadeada();
 
         lista.adicionaFim(a1);  //funcionando
         lista.adicionaFim(a2);  //funcionando
         lista.adicionaFim(a3);  //funcionando   
         lista.adicionaInicio(a4);  //funcionando
         lista.adiciona(a5, 1);  //funcionando        
- 
-        //lista.removeInicio();  //funcionando 
-        //lista.removeFim();  //funcionando 
-        lista.remove(4);    //funcionando
-        //lista.limpa();  //funcionando
+
+        lista.removeInicio();  //funcionando 
+        lista.removeFim();  //funcionando 
+        lista.remove(1);    //funcionando
+        
+        lista.limpa();  //funcionando
         
         for (int i = 0; i < lista.tamanho(); i++) {
             ver = (Aluno) lista.Recupera(i);
