@@ -25,7 +25,7 @@ public class Main {
         lista.removeFim();  //funcionando 
         lista.remove(1);    //funcionando
         
-        lista.limpa();  //funcionando
+        //lista.limpa();  //funcionando
         
         for (int i = 0; i < lista.tamanho(); i++) {
             ver = (Aluno) lista.Recupera(i);
