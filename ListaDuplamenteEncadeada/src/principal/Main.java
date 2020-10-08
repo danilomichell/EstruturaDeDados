@@ -1,7 +1,7 @@
 package principal;
 
 import utils.Aluno;
-import listaencadeada.ListaEncadeada;
+import listaduplamenteencadeada.ListaDuplamenteEncadeada;
 
 public class Main {
 
@@ -13,7 +13,7 @@ public class Main {
         Aluno a4 = new Aluno("Jonas", 11);
         Aluno a5 = new Aluno("Rebeca", 19);
 
-        ListaEncadeada lista = new ListaEncadeada();
+        ListaDuplamenteEncadeada lista = new ListaDuplamenteEncadeada();
 
         lista.adicionaFim(a1);  //funcionando
         lista.adicionaFim(a2);  //funcionando

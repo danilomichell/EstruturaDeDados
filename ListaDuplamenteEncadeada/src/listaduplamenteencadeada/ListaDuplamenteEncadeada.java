@@ -1,13 +1,13 @@
-package listaencadeada;
+package listaduplamenteencadeada;
 
 import utils.Iterador;
 
-public class ListaEncadeada<T> {
+public class ListaDuplamenteEncadeada<T> {
 
     private Celula inicio, fim;
     private int tamanho;
 
-    public ListaEncadeada() {
+    public ListaDuplamenteEncadeada() {
         this.inicio = null;
         this.fim = null;
         this.tamanho = 0;

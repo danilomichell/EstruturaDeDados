@@ -1,7 +1,7 @@
 package utils;
 
 import java.util.Iterator;
-import listaencadeada.Celula;
+import listaduplamenteencadeada.Celula;
 
 public class Iterador<T> implements Iterator {
 

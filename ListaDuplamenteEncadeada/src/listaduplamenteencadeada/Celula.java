@@ -1,4 +1,4 @@
-package listaencadeada;
+package listaduplamenteencadeada;
 
 public class Celula {
 
